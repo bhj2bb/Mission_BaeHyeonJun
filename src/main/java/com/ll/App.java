@@ -29,6 +29,9 @@ public class App {
             else if (cmd.equals("목록")) {
                 list();
             }
+            else if (cmd.startsWith("삭제?")) {
+                Remove(cmd);
+            }
             else{
                 System.out.println("잘못된 명령입니다. 다시 입력하시오.\n");
             }
@@ -66,4 +69,29 @@ public class App {
         }
         System.out.println("\n");
     }
+    void Remove(String cmd) {
+        String[] cmdBits = cmd.split("\\?", 2);
+        String action = cmdBits[0];
+        String queryString = cmdBits[1];
+
+        String[] queryStringBits = queryString.split("&");
+
+        int id = 0;
+
+        for (int i = 0; i < queryStringBits.length; i++) {
+            String queryParamStr = queryStringBits[i];
+
+            String[] queryParamStrBits = queryParamStr.split("=", 2);
+
+            String paramName = queryParamStrBits[0];
+            String paramValue = queryParamStrBits[1];
+
+            if (paramName.equals("id")) {
+                id = Integer.parseInt(paramValue);
+            }
+        }
+
+        System.out.printf("%d번 명언을 삭제합니다.\n", id);
+    }
+
 }

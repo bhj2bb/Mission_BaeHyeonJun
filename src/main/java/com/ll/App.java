@@ -6,6 +6,8 @@ public class App {
     void run() {
         System.out.println("====== 명언 앱 ======");
 
+        int lastTextId = 0;
+
         while (true) {
             System.out.print("명령) ");
 
@@ -23,7 +25,11 @@ public class App {
                 System.out.print("작가 : ");
                 String authorName = scanner.nextLine();
 
+                lastTextId++;
+
                 System.out.printf("명언 : %s, 작가 : %s\n", content, authorName);
+                System.out.printf("%d번 명언이 등록되었습니다.\n", lastTextId);
+
             }
             else{
                 System.out.println("잘못된 명령입니다. 다시 입력하시오.");

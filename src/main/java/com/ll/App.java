@@ -84,7 +84,7 @@ public class App {
             return; // 함수를 끝낸다.
         }
 
-        int index = getIndexOfQuotationById(id);
+        int index = getIndexOfTextById(id);
 
         if (index == -1) {
             System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
@@ -95,8 +95,7 @@ public class App {
 
         System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
     }
-
-    int getIndexOfQuotationById(int id) {
+    int getIndexOfTextById(int id) {
         for (int i = 0; i < texts.size(); i++) {
             Text text = texts.get(i);
 
@@ -116,6 +115,27 @@ public class App {
         }
 
         System.out.printf("%d번 명언을 수정합니다.\n", id);
-    }
 
+        int index = getIndexOfTextById(id);
+
+        if (index == -1) {
+            System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
+            return;
+        }
+
+        Text text = texts.get(index);
+
+        System.out.printf("명언(기존) : %s\n", text.content);
+        System.out.print("명언 : ");
+        String content = scanner.nextLine();
+
+        System.out.printf("작가(기존) : %s\n", text.authorName);
+        System.out.print("작가 : ");
+        String authorName = scanner.nextLine();
+
+        text.content = content;
+        text.authorName = authorName;
+
+        System.out.printf("%d번 명언을 수정되었습니다.\n", id);
+    }
 }
